@@ -65,7 +65,10 @@ Platform Differences:
 iOS: Uses Cupertino widgets (e.g., CupertinoPageScaffold, CupertinoSearchTextField) for a native iOS experience.
 Android: Uses Material Design widgets (e.g., Scaffold, TextField) for a native Android experience.
 
-Screenshots: 
+Screenshots: ( Android )  ![Image](https://github.com/user-attachments/assets/3f2e6904-be02-4249-997c-bbab9f5fe6bf)
+![Image](https://github.com/user-attachments/assets/4d252f35-ad0d-4e6c-9708-762ed9fa6ba5)
+![Image](https://github.com/user-attachments/assets/145220ff-d55f-474d-a3cc-44e56075b17c)
+![Image](https://github.com/user-attachments/assets/76af3a2a-7316-4098-a367-8817658da315)
 
 
 Limitations:
