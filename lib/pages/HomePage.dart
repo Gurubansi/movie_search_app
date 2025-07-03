@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final provider = Provider.of<MovieProvider>(context, listen: false);
-     // provider.fetchPopularMovies();
+     provider.fetchPopularMovies();
       provider.loadRecentSearches();
     });
   }
@@ -142,22 +142,63 @@ class _HomePageState extends State<HomePage> {
                           itemCount: provider.recentSearches.length,
                           itemBuilder: (context, index) {
                             final search = provider.recentSearches[index];
-                            return Padding(
-                              padding: const EdgeInsets.only(right: 8),
-                              child: Chip(
-                                label: GestureDetector(
-                                  onTap: () {
-                                    provider.onRecentSearchTap(search);
+
+                            if (Platform.isIOS) {
+                              // Cupertino Style
+                              return Padding(
+                                padding: const EdgeInsets.only(right: 8),
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                  decoration: BoxDecoration(
+                                    color: AppColor.secondaryText[900],
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      GestureDetector(
+                                        onTap: () {
+                                          provider.onRecentSearchTap(search);
+                                        },
+                                        child: Text(
+                                          search,
+                                          style: const TextStyle(color: AppColor.primaryText),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 6),
+                                      GestureDetector(
+                                        onTap: () {
+                                          provider.removeRecent(index);
+                                        },
+                                        child: const Icon(
+                                          CupertinoIcons.clear_circled_solid,
+                                          size: 18,
+                                          color: AppColor.accentYellow,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            } else {
+                              // Material Style
+                              return Padding(
+                                padding: const EdgeInsets.only(right: 8),
+                                child: Chip(
+                                  label: GestureDetector(
+                                    onTap: () {
+                                      provider.onRecentSearchTap(search);
+                                    },
+                                    child: Text(search, style: const TextStyle(color: AppColor.primaryText)),
+                                  ),
+                                  deleteIcon: const Icon(Icons.close, size: 18, color: AppColor.accentYellow),
+                                  onDeleted: () {
+                                    provider.removeRecent(index);
                                   },
-                                    child: Text(search, style: const TextStyle(color: AppColor.primaryText))),
-                                deleteIcon: const Icon(Icons.close, size: 18, color:  AppColor.accentYellow),
-                                onDeleted: () {
-                                  provider.removeRecent(index);
-                                },
-                                backgroundColor: AppColor.secondaryText[900],
-                                labelStyle: const TextStyle(color: AppColor.primaryText),
-                              ),
-                            );
+                                  backgroundColor: AppColor.secondaryText[900],
+                                  labelStyle: const TextStyle(color: AppColor.primaryText),
+                                ),
+                              );
+                            }
                           },
                         ),
                       ),
@@ -165,6 +206,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 )
               ],
+
               const SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.only(left: 12),
