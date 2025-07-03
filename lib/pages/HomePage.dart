@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
         : Scaffold(
       appBar: AppBar(
         title: const Text('Movies', style: TextStyle(color: AppColor.accentYellow)),
-        backgroundColor:AppColor.backgroundDark, 
+        backgroundColor:AppColor.backgroundDark,
       ),
       backgroundColor:AppColor.backgroundDark,
       body: _buildContent(context, screenSize),
@@ -120,7 +120,7 @@ class _HomePageState extends State<HomePage> {
                   },
                 ),
               ),
-              if (provider.recentSearches.isNotEmpty) ...[
+              if (provider.recentSearches.isNotEmpty)...[
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                   child: Column(
@@ -142,18 +142,17 @@ class _HomePageState extends State<HomePage> {
                           itemCount: provider.recentSearches.length,
                           itemBuilder: (context, index) {
                             final search = provider.recentSearches[index];
-
                             if (Platform.isIOS) {
-                              // Cupertino Style
                               return Padding(
                                 padding: const EdgeInsets.only(right: 8),
                                 child: Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                                   decoration: BoxDecoration(
                                     color: AppColor.secondaryText[900],
                                     borderRadius: BorderRadius.circular(20),
                                   ),
                                   child: Row(
+                                    mainAxisSize: MainAxisSize.min,
                                     children: [
                                       GestureDetector(
                                         onTap: () {
@@ -161,7 +160,13 @@ class _HomePageState extends State<HomePage> {
                                         },
                                         child: Text(
                                           search,
-                                          style: const TextStyle(color: AppColor.primaryText),
+                                          style: const TextStyle(
+                                            color: AppColor.primaryText,
+                                            fontSize: 14,
+                                            decoration: TextDecoration.none,
+                                          ),
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
                                         ),
                                       ),
                                       const SizedBox(width: 6),
@@ -171,7 +176,7 @@ class _HomePageState extends State<HomePage> {
                                         },
                                         child: const Icon(
                                           CupertinoIcons.clear_circled_solid,
-                                          size: 18,
+                                          size: 16, // Smaller icon size
                                           color: AppColor.accentYellow,
                                         ),
                                       ),
@@ -188,9 +193,15 @@ class _HomePageState extends State<HomePage> {
                                     onTap: () {
                                       provider.onRecentSearchTap(search);
                                     },
-                                    child: Text(search, style: const TextStyle(color: AppColor.primaryText)),
+                                    child: Text(
+                                      search,
+                                      style: const TextStyle(
+                                        color: AppColor.primaryText,
+                                        fontSize: 14,
+                                      ),
+                                    ),
                                   ),
-                                  deleteIcon: const Icon(Icons.close, size: 18, color: AppColor.accentYellow),
+                                  deleteIcon: const Icon(Icons.close, size: 16, color: AppColor.accentYellow),
                                   onDeleted: () {
                                     provider.removeRecent(index);
                                   },
@@ -317,8 +328,8 @@ class _HomePageState extends State<HomePage> {
                       : const CircularProgressIndicator(color:  AppColor.accentYellow),
                 ),
                 errorWidget: (context, url, error) => const Icon(
-                  Icons.error,
-                  color: Colors.red,
+                  Icons.broken_image_rounded,
+                  color: AppColor.secondaryText,
                 ),
               ),
             ),
@@ -359,33 +370,6 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          // Center(
-          //   child: Padding(
-          //     padding: const EdgeInsets.all(10),
-          //     child: Platform.isIOS
-          //         ? CupertinoButton(
-          //       color: AppColor.accentYellow,
-          //       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-          //       child: const Text(
-          //         'More Details',
-          //         style: TextStyle(color: Colors.black),
-          //       ),
-          //       onPressed: () {},
-          //     )
-          //         : ElevatedButton(
-          //       style: ElevatedButton.styleFrom(
-          //         primary: AppColor.accentYellow,
-          //         onPrimary: Colors.black,
-          //         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-          //         shape: RoundedRectangleBorder(
-          //           borderRadius: BorderRadius.circular(8),
-          //         ),
-          //       ),
-          //       onPressed: () {},
-          //       child: const Text('More Details'),
-          //     ),
-          //   ),
-          // ),
         ],
       ),
     );
