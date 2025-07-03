@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final provider = Provider.of<MovieProvider>(context, listen: false);
-     // provider.fetchPopularMovies();
+     provider.fetchPopularMovies();
       provider.loadRecentSearches();
     });
   }

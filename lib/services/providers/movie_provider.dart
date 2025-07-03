@@ -33,7 +33,7 @@ class MovieProvider extends ChangeNotifier {
     await searchMovies(searchController.text);
   }
   // Fetch popular movies
-   fetchPopularMovies() async {
+  fetchPopularMovies() async {
     _isLoading = true;
     _errorMessage = null;
     _movieList = [];
@@ -41,11 +41,16 @@ class MovieProvider extends ChangeNotifier {
 
     try {
       final url = Uri.parse('https://imdb236.p.rapidapi.com/api/imdb/most-popular-movies');
+      print('API Request URI: $url');
+
       final response = await http.get(url, headers: {
         'x-rapidapi-key': _apiKey,
         'x-rapidapi-host': _apiHost,
         'Accept': 'application/json',
       });
+
+      print('API Response Status Code: ${response.statusCode}');
+      print('API Response Body: ${response.body}');
 
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
@@ -54,10 +59,12 @@ class MovieProvider extends ChangeNotifier {
             .toList();
       } else {
         _errorMessage = 'Failed to load movies: ${response.statusCode}';
+        print('API Error: $_errorMessage');
         _movieList = [];
       }
     } catch (e) {
       _errorMessage = 'Error fetching movies: $e';
+      print('API Exception: $_errorMessage');
       _movieList = [];
     }
 
@@ -66,7 +73,7 @@ class MovieProvider extends ChangeNotifier {
   }
 
   // Search movies by title
-   searchMovies(String query) async {
+  searchMovies(String query) async {
     if (query.isEmpty) return;
 
     _isLoading = true;
@@ -77,11 +84,21 @@ class MovieProvider extends ChangeNotifier {
     try {
       final url = Uri.parse(
           'https://$_apiHost/api/imdb/search?originalTitle=$query&type=movie');
+      print('API Request URI: $url');
+      print('API Request Headers: {'
+          '\'x-rapidapi-key\': \'$_apiKey\', '
+          '\'x-rapidapi-host\': \'$_apiHost\', '
+          '\'Accept\': \'application/json\'}');
+      print('API Request Body: None (GET request)');
+
       final response = await http.get(url, headers: {
         'x-rapidapi-key': _apiKey,
         'x-rapidapi-host': _apiHost,
         'Accept': 'application/json',
       });
+
+      print('API Response Status Code: ${response.statusCode}');
+      print('API Response Body: ${response.body}');
 
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
@@ -91,10 +108,12 @@ class MovieProvider extends ChangeNotifier {
         await _addRecentSearch(query);
       } else {
         _errorMessage = 'Failed to load search results: ${response.statusCode}';
+        print('API Error: $_errorMessage');
         _searchMovieList = [];
       }
     } catch (e) {
       _errorMessage = 'Error searching movies: $e';
+      print('API Exception: $_errorMessage');
       _searchMovieList = [];
     }
 
