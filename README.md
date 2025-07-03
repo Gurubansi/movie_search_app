@@ -14,6 +14,9 @@ Image Caching: Uses the cached_network_image package to efficiently load and cac
 
 Android release APK : https://we.tl/t-fDBQmG2qMQ (link is valid for 3 days)
 
+Ios release:- https://we.tl/t-33UOWCT4Bd  
+(link is valid for 3 days)
+
 API Usage
 The app integrates with the IMDb API hosted on RapidAPI to fetch movie data. The API provides two main endpoints used in this project:
 
@@ -67,8 +70,10 @@ Android: Uses Material Design widgets (e.g., Scaffold, TextField) for a native A
 
 Screenshots: ( Android )  ![Image](https://github.com/user-attachments/assets/3f2e6904-be02-4249-997c-bbab9f5fe6bf)
 ![Image](https://github.com/user-attachments/assets/4d252f35-ad0d-4e6c-9708-762ed9fa6ba5)
-![Image](https://github.com/user-attachments/assets/145220ff-d55f-474d-a3cc-44e56075b17c)
 ![Image](https://github.com/user-attachments/assets/76af3a2a-7316-4098-a367-8817658da315)
+
+IOS :- ![Image](https://github.com/user-attachments/assets/c448461d-6224-4659-995d-25e6fe71faef)
+<img width="447" alt="Image" src="https://github.com/user-attachments/assets/9e2c9cef-267a-424f-8bfa-c1124eac9099" />
 
 
 Limitations:
