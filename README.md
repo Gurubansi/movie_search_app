@@ -15,8 +15,6 @@ Image Caching: Uses the cached_network_image package to efficiently load and cac
 
 Android release APK : https://we.tl/t-fDBQmG2qMQ (link is valid for 3 days)
 
-Ios release:- https://we.tl/t-33UOWCT4Bd  
-(link is valid for 3 days)
 
 API Usage
 The app integrates with the IMDb API hosted on RapidAPI to fetch movie data. The API provides two main endpoints used in this project:
