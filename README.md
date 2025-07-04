@@ -1,6 +1,7 @@
-
 🎬 Movie Search App
-Overview
+
+Overview 
+
 The Movie Search App is a Flutter-based mobile application that allows users to browse popular movies and search for movies by title. The app is designed to work on both iOS and Android platforms, providing a seamless user experience with platform-specific UI elements. It fetches movie data from the IMDb API hosted on RapidAPI, displays movie details such as titles and ratings, and includes a recent searches feature to enhance user interaction.
 Features
 
